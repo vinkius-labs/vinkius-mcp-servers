@@ -52,6 +52,10 @@ export default defineConfig({
   },
 
   head: [
+    // Google Analytics
+    ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-WQ6K5JY8JY' }],
+    ['script', {}, `window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-WQ6K5JY8JY');`],
+
     // Favicons
     ['link', { rel: 'icon', type: 'image/x-icon', href: 'https://site-assets.vinkius.com/vk/favicon/favicon.ico' }],
     ['link', { rel: 'icon', type: 'image/png', sizes: '96x96', href: 'https://site-assets.vinkius.com/vk/favicon/favicon-96x96.png' }],
@@ -67,7 +71,7 @@ export default defineConfig({
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'Vinkius Cloud — The Governance Layer for MCP Servers' }],
     ['meta', { property: 'og:description', content: 'Deploy, secure, and monitor MCP servers from a single dashboard. Built-in DLP, FinOps, and zero-config OpenAPI import.' }],
-    ['meta', { property: 'og:url', content: 'https://vinkius-labs.github.io/vinkius-mcp-servers' }],
+    ['meta', { property: 'og:url', content: 'https://docs.vinkius.com' }],
 
     // Twitter
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
