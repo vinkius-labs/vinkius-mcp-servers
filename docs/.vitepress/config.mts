@@ -37,7 +37,7 @@ function nofollowExternalLinks(md: MarkdownIt) {
 export default defineConfig({
   title: 'Vinkius Cloud',
   description: 'The Governance Layer for MCP Servers. Deploy, secure, and monitor MCP servers from a single dashboard.',
-  base: '/vinkius-mcp-servers/',
+  base: '/',
   cleanUrls: true,
   appearance: 'force-dark',
 
@@ -48,7 +48,7 @@ export default defineConfig({
   },
 
   sitemap: {
-    hostname: 'https://vinkius-labs.github.io/vinkius-mcp-servers'
+    hostname: 'https://docs.vinkius.com'
   },
 
   head: [
