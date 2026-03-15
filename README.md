@@ -32,7 +32,7 @@ The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) — created
 
 Three pillars. One platform:
 
-- **[Vurb.ts](https://vinkius.com/docs/vurb)** — Open-source TypeScript framework for building production-grade MCP servers. OpenAPI → governed MCP server in one command.
+- **[Vurb.ts](https://vurb.vinkius.com)** — Open-source TypeScript framework for building production-grade MCP servers. OpenAPI → governed MCP server in one command.
 - **[Vinkius Cloud](https://cloud.vinkius.com)** — Managed runtime with V8 sandbox isolation, zero-trust DLP, cost profiler, audit dashboard, and kill switch. Eight security layers ship with every deploy — zero config.
 - **[Marketplace](https://vinkius.com/marketplace)** — Publish and sell MCP servers and domain expertise as recurring subscriptions.
 
@@ -56,7 +56,7 @@ MCP reached **97 million monthly SDK downloads** in just 16 months. But the infr
 
 McKinsey: *"Governance — not speed — is the differentiator."* JPMorgan Chase CISO: *"Convenience can no longer outpace control."*
 
-**[Learn more about MCP security →](https://vinkius.com/docs/security)**
+**[Learn more about MCP security →](https://docs.vinkius.com/security/)**
 
 ---
 
@@ -75,7 +75,7 @@ McKinsey: *"Governance — not speed — is the differentiator."* JPMorgan Chase
 | **Audit Dashboard** | Real-time audit trail of every tool call, every response, every data access — exportable for compliance. |
 | **Kill Switch** | Instant remote shutdown of any MCP server. One click. No waiting for deploys. |
 
-**[Explore all security features →](https://vinkius.com/docs/security)**
+**[Explore all security features →](https://docs.vinkius.com/security/)**
 
 ---
 
@@ -147,7 +147,7 @@ f.mutation('orders.cancel')
 npm install @vurb/core
 ```
 
-**[Read the Vurb.ts documentation →](https://vinkius.com/docs/vurb)**
+**[Read the Vurb.ts documentation →](https://vurb.vinkius.com)**
 
 ---
 
@@ -231,7 +231,7 @@ Vinkius is the only platform that covers all three layers of the MCP server econ
 | MCP directories | ❌ | ❌ | Partial | ❌ |
 | **Vinkius Marketplace** | ✅ | ✅ | ✅ | ✅ |
 
-**[See full comparison →](https://vinkius.com/docs/comparison)**
+
 
 ---
 
@@ -248,7 +248,7 @@ Vinkius provides:
 - **Token economics** — Cost visibility and budget controls for AI agent compute
 - **Session governance** — Finite state machine gates enforce correct tool call ordering
 
-**[Learn about AI compliance →](https://vinkius.com/docs/compliance)**
+
 
 ---
 
@@ -271,7 +271,7 @@ The Vurb.ts ecosystem includes official packages for common integrations:
 | `@vurb/inspector` | Real-time debugging TUI for MCP servers |
 | `@vurb/testing` | Testing utilities for MCP server development |
 
-**[Browse all packages →](https://vinkius.com/docs/packages)**
+
 
 ---
 
@@ -379,7 +379,7 @@ Your MCP server is now live — with all eight security layers active. Connect i
 | `vurb remote --server-id <id>` | Set target server UUID |
 | `vurb inspect` | Launch real-time TUI debugging dashboard |
 
-**[Full CLI documentation →](https://vinkius.com/docs/vurb/cli)**
+**[Full CLI documentation →](https://vurb.vinkius.com)**
 
 ---
 
@@ -401,7 +401,7 @@ npx vurb remote --server-id YOUR_SERVER_UUID
 npx vurb deploy
 ```
 
-**[OpenAPI generator docs →](https://vinkius.com/docs/vurb/openapi)**
+**[OpenAPI generator docs →](https://vurb.vinkius.com)**
 
 ### Connect Any API via Vinkius Cloud (No Code)
 
@@ -411,7 +411,7 @@ npx vurb deploy
 4. Copy the MCP token and add it to your AI editor config
 5. Your API is now an MCP server — secured with eight layers of protection
 
-**[Cloud quickstart guide →](https://vinkius.com/docs/cloud/quickstart)**
+**[Cloud quickstart guide →](https://docs.vinkius.com/getting-started)**
 
 ### Sell Your Expertise on the Marketplace (Domain Experts)
 
@@ -420,7 +420,7 @@ npx vurb deploy
 3. AI agents discover and apply your expertise automatically
 4. Earn recurring subscription revenue
 
-**[Marketplace seller guide →](https://vinkius.com/docs/marketplace/selling)**
+
 
 ---
 
@@ -428,10 +428,10 @@ npx vurb deploy
 
 | Resource | Link |
 |----------|------|
-| Full Documentation | [vinkius.com/docs](https://vinkius.com/docs) |
-| Vurb.ts Quickstart | [vinkius.com/docs/vurb/quickstart](https://vinkius.com/docs/vurb/quickstart) |
+| Full Documentation | [docs.vinkius.com](https://docs.vinkius.com) |
+| Vurb.ts Quickstart | [vurb.vinkius.com](https://vurb.vinkius.com) |
 | Cloud Dashboard | [cloud.vinkius.com](https://cloud.vinkius.com) |
-| Security Overview | [vinkius.com/docs/security](https://vinkius.com/docs/security) |
+| Security Overview | [docs.vinkius.com/security](https://docs.vinkius.com/security/) |
 | Blog | [vinkius.com/blog](https://vinkius.com/blog) |
 | Discord Community | [discord.gg/vinkius](https://discord.gg/vinkius) |
 
