@@ -303,7 +303,7 @@ The AI model still receives the response structure and non-sensitive fields (`na
 
 ## Audit trail integration
 
-Every redaction event is recorded in the [Audit Log](/vinkius-mcp-servers/security/audit-log):
+Every redaction event is recorded in the [Audit Log](/security/audit-log):
 
 - **DLP column** — the number of redacted fields per tool call (amber when > 0)
 - **Pattern matched** — which DLP pattern triggered the redaction

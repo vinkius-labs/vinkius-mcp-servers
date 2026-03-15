@@ -166,7 +166,7 @@ The OOM Shield is your last line of defense against runaway responses. If disabl
 
 ## TOON Compression
 
-Shared with the [MCP Defaults](/vinkius-mcp-servers/settings/mcp-defaults#toon-token-compression) tab. When enabled here, TOON compression applies globally. See the MCP Defaults page for details on compatibility and behavior.
+Shared with the [MCP Defaults](/settings/mcp-defaults#toon-token-compression) tab. When enabled here, TOON compression applies globally. See the MCP Defaults page for details on compatibility and behavior.
 
 ---
 

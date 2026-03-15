@@ -296,12 +296,12 @@ The **Edit** modal opens inline from the dashboard. This is where per-server gov
 | **Name** | Set at creation | Editable |
 | **Description** | Optional | Editable |
 | **Base URL** | Set at creation | Editable (except Agent Skills) |
-| **DLP Protection** | Inherits from [Settings → Data Shielding](/vinkius-mcp-servers/settings/dlp) | Toggle + custom patterns per server |
+| **DLP Protection** | Inherits from [Settings → Data Shielding](/settings/dlp) | Toggle + custom patterns per server |
 | **DLP Patterns** | Inherits global patterns | Add or replace patterns per server |
-| **FinOps Guard** | Inherits from [Settings → FinOps Guard](/vinkius-mcp-servers/settings/finops) | Toggle per server |
+| **FinOps Guard** | Inherits from [Settings → FinOps Guard](/settings/finops) | Toggle per server |
 | **Max Payload Size** | Inherits global limit | Custom slider per server |
 | **Max Payload Bytes** | Inherits global OOM Shield | Custom limit per server |
-| **Tool Exposition** | From [MCP Defaults](/vinkius-mcp-servers/settings/mcp-defaults) | Flat, Grouped, or None |
+| **Tool Exposition** | From [MCP Defaults](/settings/mcp-defaults) | Flat, Grouped, or None |
 
 ::: info Inheritance model
 Settings follow a **global-to-per-server** chain. When a per-server override is not set, the global default from Settings applies. This means you can configure governance once and have it apply to every server — then selectively override where needed.

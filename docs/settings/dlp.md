@@ -89,7 +89,7 @@ The input field includes autocomplete with 32+ built-in patterns organized acros
 Each server inherits global DLP patterns at creation. You can add additional patterns or replace the global set entirely from the server's detail page → Edit modal.
 
 ::: tip Deep dive
-For the full technical reference on how DLP works — data flow, compliance impact, and industry context — see [Zero-Trust PII Redaction](/vinkius-mcp-servers/security/dlp).
+For the full technical reference on how DLP works — data flow, compliance impact, and industry context — see [Zero-Trust PII Redaction](/security/dlp).
 :::
 
 ---

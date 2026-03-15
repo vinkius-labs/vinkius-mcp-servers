@@ -164,9 +164,9 @@ When you reach your plan limit, the Generate button is disabled and an upgrade n
 Click **Revoke** on any token to permanently invalidate it. Revocation is:
 
 - **Immediate** — The token is deleted from the database and a `mcp:invalidate` event is published via Redis pub/sub in the same request
-- **Propagated** — Active SSE connections authenticated with the revoked token are terminated within milliseconds through the [Kill Switch](/vinkius-mcp-servers/security/kill-switch) mechanism
+- **Propagated** — Active SSE connections authenticated with the revoked token are terminated within milliseconds through the [Kill Switch](/security/kill-switch) mechanism
 - **Irreversible** — Once revoked, the token hash is removed. There is no "undo" or "suspend" — only delete and regenerate
-- **Audited** — The revocation event appears in the [Audit Logs](/vinkius-mcp-servers/servers/logs)
+- **Audited** — The revocation event appears in the [Audit Logs](/servers/logs)
 
 ::: tip Token rotation
 To rotate a token without downtime, generate a new token first, update your client configuration, then revoke the old token. Because tokens are per-server and independently named, you can run multiple active tokens during the transition window.
