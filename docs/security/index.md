@@ -109,6 +109,18 @@ Vinkius Cloud provides five security and governance layers that work together to
 <span style="font-size:14px;color:rgba(34,211,238,0.5);font-family:Inter,sans-serif">→</span>
 </a>
 
+<a href="/security/circuit-breaker" style="text-decoration:none;display:grid;grid-template-columns:120px 1fr auto;align-items:center;padding:28px 32px;border:1px solid rgba(245,158,11,0.1);border-radius:10px;background:rgba(245,158,11,0.02);gap:24px">
+<div>
+<div style="font-size:28px;color:rgba(245,158,11,0.7);font-weight:700;font-family:Inter,system-ui,sans-serif">Auto</div>
+<div style="font-size:11px;color:rgba(245,158,11,0.3);letter-spacing:1px;margin-top:4px;font-family:ui-monospace,monospace">BREAKER</div>
+</div>
+<div>
+<div style="font-size:18px;color:rgba(255,255,255,0.85);font-weight:600;font-family:Inter,sans-serif">Financial Circuit Breaker</div>
+<div style="font-size:14px;color:rgba(255,255,255,0.35);margin-top:6px;line-height:1.6;font-family:Inter,sans-serif">Automatically halts all AI agent traffic when request rates exceed your budget ceiling. Configurable detection window, request thresholds, and cooldown periods — with human-in-the-loop approval to resume.</div>
+</div>
+<span style="font-size:14px;color:rgba(245,158,11,0.5);font-family:Inter,sans-serif">→</span>
+</a>
+
 </div>
 
 ---

@@ -157,6 +157,7 @@ export default defineConfig({
           { text: 'V8 Sandbox + SSRF', link: '/security/sandbox' },
           { text: 'Credential Vault', link: '/security/credential-vault' },
           { text: 'Audit Log', link: '/security/audit-log' },
+          { text: 'Circuit Breaker', link: '/security/circuit-breaker' },
         ]
       },
       {
