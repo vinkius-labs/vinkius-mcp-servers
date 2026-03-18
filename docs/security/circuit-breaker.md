@@ -145,7 +145,7 @@ The circuit breaker is controlled from **Settings → Circuit Breaker** in the V
 <div style="padding:24px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;background:#09090f">
 <div style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:2px;font-weight:700;margin-bottom:12px;font-family:ui-monospace,monospace">COOLDOWN PERIOD</div>
 <div style="font-size:18px;color:rgba(255,255,255,0.85);font-weight:700;font-family:Inter,sans-serif">Auto-Reset Timer</div>
-<div style="font-size:14px;color:rgba(255,255,255,0.35);margin-top:8px;line-height:1.6;font-family:Inter,sans-serif">Duration in minutes the circuit stays open before automatically resetting. If you don't manually approve resumption within this period, traffic resumes automatically. Configurable from 1 to 1,440 minutes (24 hours). Default: <strong>15 minutes</strong>.</div>
+<div style="font-size:14px;color:rgba(255,255,255,0.35);margin-top:8px;line-height:1.6;font-family:Inter,sans-serif">Duration in minutes the circuit stays open before automatically resetting. If you don't manually approve resumption within this period, traffic resumes automatically. Configurable from 1 to 60 minutes. Default: <strong>15 minutes</strong>.</div>
 </div>
 
 <div style="padding:24px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;background:#09090f">
@@ -155,6 +155,68 @@ The circuit breaker is controlled from **Settings → Circuit Breaker** in the V
 </div>
 
 </div>
+
+---
+
+## Using the Circuit Breaker from the Dashboard
+
+The circuit breaker is managed entirely from the Vinkius Cloud dashboard. Here's how to configure and monitor it:
+
+### Setting up
+
+<div style="margin:24px 0;border:1px solid rgba(255,255,255,0.08);border-radius:8px;overflow:hidden;background:#09090f;padding:24px 28px;font-family:ui-monospace,monospace">
+<div style="font-size:12px;color:rgba(129,140,248,0.5);letter-spacing:2px;margin-bottom:20px;font-weight:600">SETUP STEPS</div>
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+<span style="font-size:12px;color:rgba(255,255,255,0.2);font-family:ui-monospace,monospace;min-width:20px">01</span>
+<span style="font-size:15px;color:rgba(255,255,255,0.85);font-family:Inter,sans-serif">Navigate to <strong>Settings → Circuit Breaker</strong> in the sidebar</span>
+</div>
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+<span style="font-size:12px;color:rgba(255,255,255,0.2);font-family:ui-monospace,monospace;min-width:20px">02</span>
+<span style="font-size:15px;color:rgba(255,255,255,0.85);font-family:Inter,sans-serif">Make sure the master toggle is <strong>enabled</strong> (on by default)</span>
+</div>
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+<span style="font-size:12px;color:rgba(255,255,255,0.2);font-family:ui-monospace,monospace;min-width:20px">03</span>
+<span style="font-size:15px;color:rgba(255,255,255,0.85);font-family:Inter,sans-serif">Adjust the <strong>Max Requests</strong> slider — this is the total number of requests allowed within the detection window before tripping (100–50,000)</span>
+</div>
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+<span style="font-size:12px;color:rgba(255,255,255,0.2);font-family:ui-monospace,monospace;min-width:20px">04</span>
+<span style="font-size:15px;color:rgba(255,255,255,0.85);font-family:Inter,sans-serif">Set the <strong>Detection Window</strong> — the sliding time window in minutes to count requests (1–60 min)</span>
+</div>
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+<span style="font-size:12px;color:rgba(255,255,255,0.2);font-family:ui-monospace,monospace;min-width:20px">05</span>
+<span style="font-size:15px;color:rgba(255,255,255,0.85);font-family:Inter,sans-serif">Set the <strong>Cooldown Period</strong> — how long traffic remains halted before auto-resetting (1–60 min)</span>
+</div>
+<div style="display:flex;align-items:center;gap:12px">
+<span style="font-size:12px;color:rgba(255,255,255,0.2);font-family:ui-monospace,monospace;min-width:20px">06</span>
+<span style="font-size:15px;color:rgba(255,255,255,0.85);font-family:Inter,sans-serif">Click <strong>Save Settings</strong> — changes take effect immediately across all servers</span>
+</div>
+</div>
+
+### Responding to a trip
+
+When the circuit breaker trips, a prominent amber alert appears at the top of the Circuit Breaker settings panel:
+
+<div style="margin:24px 0;padding:20px 24px;border:1px solid rgba(245,158,11,0.3);border-radius:10px;background:rgba(245,158,11,0.06)">
+<div style="display:flex;align-items:center;gap:12px">
+<span style="font-size:20px">⚠️</span>
+<div>
+<div style="font-size:15px;color:rgba(245,158,11,0.9);font-weight:600;font-family:Inter,sans-serif">Circuit Breaker Tripped</div>
+<div style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:2px;font-family:Inter,sans-serif">Agent traffic is currently halted. Your budget is protected. Approve resumption when ready.</div>
+</div>
+</div>
+<div style="margin-top:16px">
+<span style="display:inline-block;padding:8px 16px;background:rgba(129,140,248,0.15);border:1px solid rgba(129,140,248,0.3);border-radius:6px;color:rgba(129,140,248,0.9);font-size:13px;font-weight:600;font-family:Inter,sans-serif">↻ Approve Resumption</span>
+</div>
+</div>
+
+You have two options:
+
+1. **Manual resumption** — Click **Approve Resumption** to immediately restore traffic. Use this when you've identified and resolved the cause of the spike.
+2. **Wait for auto-reset** — After the cooldown period expires, traffic resumes automatically. Use this when you want the system to self-heal while you investigate.
+
+::: tip BEST PRACTICE
+After a trip, check the **Audit Logs** on your server detail pages to identify which tool or agent caused the spike. Common culprits include recursive tool chains, retry loops, and misconfigured polling agents.
+:::
 
 ---
 
@@ -233,29 +295,134 @@ The circuit breaker is fundamentally different from per-endpoint rate limiting. 
 
 ---
 
-## Recommended configurations
+## Real-world examples
 
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:24px 0">
+Concrete scenarios where the circuit breaker protects you — and the recommended settings for each.
 
-<div style="padding:20px 24px;border:1px solid rgba(52,211,153,0.15);border-radius:8px;background:rgba(52,211,153,0.02)">
-<div style="font-size:11px;color:rgba(52,211,153,0.5);letter-spacing:2px;font-weight:700;margin-bottom:8px;font-family:ui-monospace,monospace">DEVELOPMENT</div>
-<div style="font-size:16px;color:rgba(255,255,255,0.85);font-weight:700;font-family:Inter,sans-serif">Low threshold</div>
-<div style="font-size:13px;color:rgba(255,255,255,0.35);margin-top:8px;line-height:1.6;font-family:Inter,sans-serif">500 requests / 5 min window / 5 min cooldown. Catches runaway behavior early while you're iterating on prompts and tool configurations.</div>
+<div style="margin:32px 0;padding:28px;border:1px solid rgba(239,68,68,0.2);border-radius:10px;background:rgba(239,68,68,0.03)">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+<span style="font-size:11px;color:rgba(239,68,68,0.6);letter-spacing:2px;font-weight:700;font-family:ui-monospace,monospace">SCENARIO 1</span>
+</div>
+<div style="font-size:18px;color:rgba(255,255,255,0.9);font-weight:700;font-family:Inter,sans-serif">Recursive tool chain in Cursor</div>
+<div style="font-size:14px;color:rgba(255,255,255,0.4);margin-top:10px;line-height:1.7;font-family:Inter,sans-serif">
+A developer asks Cursor to <em>"list all users and update each profile photo."</em> The agent calls <code style="font-size:12px;color:rgba(239,68,68,0.6)">GET /users</code> (returns 2,000 users), then loops <code style="font-size:12px;color:rgba(239,68,68,0.6)">PATCH /users/{id}/avatar</code> for every single one. That's <strong>2,001 requests in under 60 seconds</strong> from a single prompt.
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px">
+<div style="padding:14px 18px;border:1px solid rgba(239,68,68,0.15);border-radius:6px;background:rgba(239,68,68,0.04)">
+<div style="font-size:10px;color:rgba(239,68,68,0.5);letter-spacing:2px;font-weight:700;margin-bottom:6px;font-family:ui-monospace,monospace">WITHOUT CIRCUIT BREAKER</div>
+<div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;font-family:Inter,sans-serif">All 2,001 requests execute. Consumes 40% of your monthly quota in one minute. If the agent retries on failures, it can double.</div>
+</div>
+<div style="padding:14px 18px;border:1px solid rgba(52,211,153,0.15);border-radius:6px;background:rgba(52,211,153,0.04)">
+<div style="font-size:10px;color:rgba(52,211,153,0.5);letter-spacing:2px;font-weight:700;margin-bottom:6px;font-family:ui-monospace,monospace">WITH CIRCUIT BREAKER</div>
+<div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;font-family:Inter,sans-serif">After 500 requests (your threshold), all further calls return <code style="font-size:11px;color:rgba(52,211,153,0.5)">429</code>. You receive an alert, approve resumption after reviewing, and only 10% of your quota was used.</div>
+</div>
+</div>
+<div style="margin-top:16px;padding:10px 16px;border-radius:6px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)">
+<span style="font-size:12px;color:rgba(129,140,248,0.6);font-weight:600;font-family:ui-monospace,monospace">RECOMMENDED → </span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);font-family:Inter,sans-serif">500 requests / 2 min window / 5 min cooldown</span>
+</div>
 </div>
 
-<div style="padding:20px 24px;border:1px solid rgba(129,140,248,0.15);border-radius:8px;background:rgba(129,140,248,0.02)">
-<div style="font-size:11px;color:rgba(129,140,248,0.5);letter-spacing:2px;font-weight:700;margin-bottom:8px;font-family:ui-monospace,monospace">PRODUCTION</div>
-<div style="font-size:16px;color:rgba(255,255,255,0.85);font-weight:700;font-family:Inter,sans-serif">Balanced</div>
-<div style="font-size:13px;color:rgba(255,255,255,0.35);margin-top:8px;line-height:1.6;font-family:Inter,sans-serif">5,000 requests / 5 min window / 15 min cooldown. The default configuration — allows normal production throughput while catching sustained runaway behavior.</div>
+
+<div style="margin:16px 0;padding:28px;border:1px solid rgba(245,158,11,0.2);border-radius:10px;background:rgba(245,158,11,0.03)">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+<span style="font-size:11px;color:rgba(245,158,11,0.6);letter-spacing:2px;font-weight:700;font-family:ui-monospace,monospace">SCENARIO 2</span>
+</div>
+<div style="font-size:18px;color:rgba(255,255,255,0.9);font-weight:700;font-family:Inter,sans-serif">Overnight polling agent</div>
+<div style="font-size:14px;color:rgba(255,255,255,0.4);margin-top:10px;line-height:1.7;font-family:Inter,sans-serif">
+A scheduled agent monitors a CRM API every 30 seconds, calling <code style="font-size:12px;color:rgba(245,158,11,0.6)">GET /deals?status=open</code> to check for new opportunities. At 2 AM, a misconfigured retry policy starts calling the endpoint <strong>10 times per second</strong> instead. By morning, it has made <strong>288,000 requests</strong>. Your monthly quota is gone.
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px">
+<div style="padding:14px 18px;border:1px solid rgba(245,158,11,0.15);border-radius:6px;background:rgba(245,158,11,0.04)">
+<div style="font-size:10px;color:rgba(245,158,11,0.5);letter-spacing:2px;font-weight:700;margin-bottom:6px;font-family:ui-monospace,monospace">WITHOUT CIRCUIT BREAKER</div>
+<div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;font-family:Inter,sans-serif">288k requests execute overnight. Monthly quota exhausted. Overage charges accumulate. You discover the problem at 9 AM when nothing works.</div>
+</div>
+<div style="padding:14px 18px;border:1px solid rgba(52,211,153,0.15);border-radius:6px;background:rgba(52,211,153,0.04)">
+<div style="font-size:10px;color:rgba(52,211,153,0.5);letter-spacing:2px;font-weight:700;margin-bottom:6px;font-family:ui-monospace,monospace">WITH CIRCUIT BREAKER</div>
+<div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;font-family:Inter,sans-serif">After 5,000 requests in 5 minutes, the breaker trips. Traffic halts instantly. At 9 AM, you see the alert, fix the retry policy, and approve resumption. Only 5,000 requests consumed.</div>
+</div>
+</div>
+<div style="margin-top:16px;padding:10px 16px;border-radius:6px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)">
+<span style="font-size:12px;color:rgba(129,140,248,0.6);font-weight:600;font-family:ui-monospace,monospace">RECOMMENDED → </span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);font-family:Inter,sans-serif">5,000 requests / 5 min window / 30 min cooldown</span>
+</div>
 </div>
 
-<div style="padding:20px 24px;border:1px solid rgba(245,158,11,0.15);border-radius:8px;background:rgba(245,158,11,0.02)">
-<div style="font-size:11px;color:rgba(245,158,11,0.5);letter-spacing:2px;font-weight:700;margin-bottom:8px;font-family:ui-monospace,monospace">HIGH-THROUGHPUT</div>
-<div style="font-size:16px;color:rgba(255,255,255,0.85);font-weight:700;font-family:Inter,sans-serif">Relaxed</div>
-<div style="font-size:13px;color:rgba(255,255,255,0.35);margin-top:8px;line-height:1.6;font-family:Inter,sans-serif">20,000 requests / 15 min window / 30 min cooldown. For accounts with multiple active agents and high legitimate throughput — still provides a ceiling to catch extreme anomalies.</div>
+
+<div style="margin:16px 0;padding:28px;border:1px solid rgba(129,140,248,0.2);border-radius:10px;background:rgba(129,140,248,0.03)">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+<span style="font-size:11px;color:rgba(129,140,248,0.6);letter-spacing:2px;font-weight:700;font-family:ui-monospace,monospace">SCENARIO 3</span>
+</div>
+<div style="font-size:18px;color:rgba(255,255,255,0.9);font-weight:700;font-family:Inter,sans-serif">Multi-agent team sharing an account</div>
+<div style="font-size:14px;color:rgba(255,255,255,0.4);margin-top:10px;line-height:1.7;font-family:Inter,sans-serif">
+A team of 8 developers, each connected via Cursor, Claude Desktop, or Antigravity. During a sprint, several agents are actively calling tools in parallel. Normal combined throughput: ~200 requests/minute. One developer accidentally triggers an agent loop that spikes to <strong>3,000 requests/minute</strong>.
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px">
+<div style="padding:14px 18px;border:1px solid rgba(129,140,248,0.15);border-radius:6px;background:rgba(129,140,248,0.04)">
+<div style="font-size:10px;color:rgba(129,140,248,0.5);letter-spacing:2px;font-weight:700;margin-bottom:6px;font-family:ui-monospace,monospace">WITHOUT CIRCUIT BREAKER</div>
+<div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;font-family:Inter,sans-serif">The runaway agent from one developer burns through the shared quota. All 8 team members hit quota limits within hours. Entire team is blocked.</div>
+</div>
+<div style="padding:14px 18px;border:1px solid rgba(52,211,153,0.15);border-radius:6px;background:rgba(52,211,153,0.04)">
+<div style="font-size:10px;color:rgba(52,211,153,0.5);letter-spacing:2px;font-weight:700;margin-bottom:6px;font-family:ui-monospace,monospace">WITH CIRCUIT BREAKER</div>
+<div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;font-family:Inter,sans-serif">Breaker trips after 15,000 requests in 10 minutes. Brief interruption for all agents (minutes, not hours). Team lead approves resumption after the offending agent is stopped. Minimal quota impact.</div>
+</div>
+</div>
+<div style="margin-top:16px;padding:10px 16px;border-radius:6px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)">
+<span style="font-size:12px;color:rgba(129,140,248,0.6);font-weight:600;font-family:ui-monospace,monospace">RECOMMENDED → </span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);font-family:Inter,sans-serif">15,000 requests / 10 min window / 15 min cooldown</span>
+</div>
+</div>
+
+
+### Quick reference
+
+<div style="margin:24px 0;border:1px solid rgba(255,255,255,0.08);border-radius:8px;overflow:hidden;background:#09090f;font-family:ui-monospace,monospace">
+
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.5fr;gap:0;padding:10px 24px;border-bottom:1px solid rgba(255,255,255,0.06)">
+<span style="font-size:11px;color:rgba(255,255,255,0.25)">PROFILE</span>
+<span style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center">MAX REQUESTS</span>
+<span style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center">WINDOW</span>
+<span style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center">COOLDOWN</span>
+<span style="font-size:11px;color:rgba(255,255,255,0.25)">BEST FOR</span>
+</div>
+
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.5fr;gap:0;padding:10px 24px;border-bottom:1px solid rgba(255,255,255,0.03)">
+<span style="font-size:13px;color:rgba(52,211,153,0.7);font-family:Inter,sans-serif;font-weight:600">Solo developer</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;font-family:Inter,sans-serif">500</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;font-family:Inter,sans-serif">2 min</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;font-family:Inter,sans-serif">5 min</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.35);font-family:Inter,sans-serif">Testing, prompt iteration</span>
+</div>
+
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.5fr;gap:0;padding:10px 24px;border-bottom:1px solid rgba(255,255,255,0.03)">
+<span style="font-size:13px;color:rgba(129,140,248,0.7);font-family:Inter,sans-serif;font-weight:600">Small team</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;font-family:Inter,sans-serif">5,000</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;font-family:Inter,sans-serif">5 min</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;font-family:Inter,sans-serif">15 min</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.35);font-family:Inter,sans-serif">Production with 2–5 agents</span>
+</div>
+
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.5fr;gap:0;padding:10px 24px;border-bottom:1px solid rgba(255,255,255,0.03)">
+<span style="font-size:13px;color:rgba(245,158,11,0.7);font-family:Inter,sans-serif;font-weight:600">Growing team</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;font-family:Inter,sans-serif">15,000</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;font-family:Inter,sans-serif">10 min</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;font-family:Inter,sans-serif">15 min</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.35);font-family:Inter,sans-serif">6–15 devs, mixed clients</span>
+</div>
+
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.5fr;gap:0;padding:10px 24px">
+<span style="font-size:13px;color:rgba(239,68,68,0.7);font-family:Inter,sans-serif;font-weight:600">High-throughput</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;font-family:Inter,sans-serif">30,000</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;font-family:Inter,sans-serif">15 min</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;font-family:Inter,sans-serif">30 min</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.35);font-family:Inter,sans-serif">Heavy automation, CI/CD</span>
 </div>
 
 </div>
+
+::: info START WITH THE DEFAULTS
+If unsure, keep the defaults — **5,000 requests / 5 min window / 15 min cooldown**. This configuration catches runaway behavior within seconds while allowing normal production workflows. You can always adjust after observing your actual traffic patterns in the Audit Logs.
+:::
 
 ---
 
